@@ -1,13 +1,9 @@
-FROM python:3.6
-
+FROM python:3.7
 ENV PYTHONUNBUFFERED 1
-
 RUN mkdir /code
-
 WORKDIR /code
-
-ADD requirements.txt /code/
-
+COPY requirements.txt /code/
 RUN pip install -r requirements.txt
-
-ADD . /code/
+COPY ./ejemplo /code/
+CMD [ "python", "./manage.py", "runserver", "0.0.0.0:8000" ]
+EXPOSE 8000
